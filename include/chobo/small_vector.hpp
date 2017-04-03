@@ -219,7 +219,7 @@ public:
         assign_impl(count, value);
     }
 
-    template <class InputIterator>
+    template <class InputIterator, typename = decltype(*(std::declval<InputIterator>()))>
     small_vector(InputIterator first, InputIterator last, const Alloc& alloc = Alloc())
         : small_vector(alloc)
     {
@@ -998,7 +998,7 @@ private:
         update_capacity();
     }
 
-    template <class InputIterator>
+    template <class InputIterator, typename = decltype(*(std::declval<InputIterator>()))>
     void assign_impl(InputIterator first, InputIterator last)
     {
         assert(m_begin);
